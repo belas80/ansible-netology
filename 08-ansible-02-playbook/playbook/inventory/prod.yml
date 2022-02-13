@@ -2,5 +2,12 @@
 elasticsearch:
   hosts:
     localhost:
+      ansible_port: 2222
       ansible_connection: ssh
-      ansible_user: root
+      ansible_user: vagrant
+kibana:
+  hosts:
+    localhost:
+      ansible_port: 2222
+      ansible_connection: ssh
+      ansible_user: vagrant
