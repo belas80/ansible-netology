@@ -7,6 +7,7 @@
       service:
         name: elasticsearch
         state: restarted
+        enabled: true
   tasks:
     - name: "Download Elasticsearch's rpm"
       get_url:
@@ -26,7 +27,7 @@
       template:
         src: elasticsearch.yml.j2
         dest: /etc/elasticsearch/elasticsearch.yml
-        mode: '660'
+        mode: '640'
       notify: restart Elasticsearch
       tags: el
 - name: Install Kibana
@@ -34,9 +35,10 @@
   handlers:
     - name: restart Kibana
       become: true
-      service:
+      systemd:
         name: kibana
         state: restarted
+        enabled: true
   tasks:
     - name: "Download Kibana's rpm"
       get_url:
@@ -56,6 +58,54 @@
       template:
         src: kibana.yml.j2
         dest: /etc/kibana/kibana.yml
-        mode: '660'
+        mode: '640'
       notify: restart Kibana
       tags: ki
+- name: Install filebeat
+  hosts: app
+  handlers:
+    - name: restart filebeat
+      become: true
+      systemd:
+        name: filebeat
+        state: restarted
+        enabled: true
+  tasks:
+    - name: "Download filebeat's rpm"
+      get_url:
+        url: "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{{ elk_stack_version }}-x86_64.rpm"
+        dest: "/tmp/filebeat-{{ elk_stack_version }}-x86_64.rpm"
+      register: download_filebeat
+      until: download_filebeat is succeeded
+      tags: fb
+    - name: Install filebeat
+      become: true
+      yum:
+        name: "/tmp/filebeat-{{ elk_stack_version }}-x86_64.rpm"
+        state: present
+      tags: fb
+    - name: Configure filebeat
+      become: true
+      template:
+        src: filebeat.yml.j2
+        dest: /etc/filebeat/filebeat.yml
+        mode: '640'
+      notify: restart filebeat
+      tags: fb
+    - name: Enable and configure the system module
+      become: true
+      command:
+        cmd: filebeat modules enable system
+        chdir: /usr/share/filebeat/bin
+      register: filebeat_modules
+      changed_when: filebeat_modules.stdout != 'Module system is already enabled'
+      tags: fb
+    - name:  Loads the Kibana dashboards
+      become: true
+      command:
+        cmd: filebeat setup
+        chdir: /usr/share/filebeat/bin
+      register: filebeat_setup
+      changed_when: false
+      until: filebeat_setup is succeeded
+      tags: fb
