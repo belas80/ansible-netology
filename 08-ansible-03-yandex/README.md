@@ -1,6 +1,6 @@
 # 08.03 Использование Yandex Cloud  
 
-Playbook устанавливает Elasticsearch, Kibana и Filebeat, на трех разных хостах. Filebeat используется для сбора 
+[Playbook](playbook) устанавливает Elasticsearch, Kibana и Filebeat, на трех разных хостах. Filebeat используется для сбора 
 системных логов с хоста `app-instance`. Для установки используются пакеты `rpm` с помощью пакетного менеджера `yum`, 
 тестировалось на хостах с `centos7`, сервисы запускаются через `systemd`.  
 Конфиги сервисов находятся в папке [playbook/templates](playbook/templates).  
