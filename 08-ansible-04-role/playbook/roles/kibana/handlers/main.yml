@@ -1,0 +1,7 @@
+---
+- name: restart Kibana
+  become: true
+  systemd:
+    name: kibana
+    state: restarted
+    enabled: true
