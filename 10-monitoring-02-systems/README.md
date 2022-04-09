@@ -43,4 +43,8 @@
 
 ## Задача 4  
 
-Метрики в веб-интерфейсе Chronograf  
+Метрики `disk` в веб-интерфейсе Chronograf  
+![](img/chronograf_disk.png)
+
+## Задача 5  
+
