@@ -50,5 +50,5 @@
 
 ## Задача 5  
 
-Добаление в конфигурацию telegraf плагин `docker`  
+Добаление в конфигурацию telegraf плагина `docker`  
 ![](img/telegrag_docker.png)
