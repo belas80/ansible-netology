@@ -38,3 +38,15 @@
 
 ## Задание 3
 
+Добавление канала telegram для алертов  
+  
+![](img/notification_channel.png)  
+
+<img src="img/telegram.jpeg" alt="telegram alert" width="200"/>  
+  
+Добавление алертов на Dashboard  
+  
+![](img/alerts.png)  
+
+## Задача 4  
+
