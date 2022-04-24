@@ -89,6 +89,8 @@ services:
       - ./configs/filebeat.yml:/usr/share/filebeat/filebeat.yml:Z
       - /var/lib/docker:/var/lib/docker:Z
       - /var/run/docker.sock:/var/run/docker.sock:Z
+    networks:
+      - elastic
     depends_on:
       - logstash
 
