@@ -18,3 +18,11 @@
 
 ## Задача 2  
 
+Создание index-patterns в kibana:  
+![](img/createIndex.png)  
+Просмотр логов в kibana (Discover):  
+![](img/discoverLog.png)  
+Выборка логов контейнера с run.py:  
+![](img/discoverLogRun_py.png)  
+
+Исходники [здесь](help)
