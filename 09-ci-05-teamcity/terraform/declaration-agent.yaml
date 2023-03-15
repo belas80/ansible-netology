@@ -1,0 +1,18 @@
+spec:
+  containers:
+  - image: jetbrains/teamcity-agent
+    securityContext:
+      privileged: false
+    stdin: false
+    tty: false
+    env:
+    - name: SERVER_URL
+      value: http://192.168.1.31:8111
+#    volumeMounts:
+#      - mountPath: /home/ubuntu/data
+#        name: data-volume
+  restartPolicy: Always
+#  volumes:
+#    - name: data-volume
+#      hostPath:
+#        path: /data

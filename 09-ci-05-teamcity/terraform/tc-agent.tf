@@ -1,7 +1,7 @@
-resource "yandex_compute_instance" "instance-tc-server" {
-  name        = "tc-server"
+resource "yandex_compute_instance" "instance-tc-agent" {
+  name        = "tc-agent"
   zone        = "ru-central1-b"
-  hostname    = "tc-server"
+  hostname    = "tc-agent"
   platform_id = "standard-v3"
 
   boot_disk {
@@ -16,11 +16,11 @@ resource "yandex_compute_instance" "instance-tc-server" {
     nat       = true
   }
   resources {
-    cores  = 4
+    cores  = 2
     memory = 4
   }
   metadata = {
-    docker-container-declaration = file("${path.module}/declaration.yaml")
+    docker-container-declaration = file("${path.module}/declaration-agent.yaml")
     user-data                    = file("${path.module}/cloud_config.yaml")
     ssh-keys                     = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
   }
