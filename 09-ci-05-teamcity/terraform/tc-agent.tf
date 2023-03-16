@@ -16,7 +16,7 @@ resource "yandex_compute_instance" "instance-tc-agent" {
     nat       = true
   }
   resources {
-    cores  = 2
+    cores  = 4
     memory = 4
   }
   metadata = {

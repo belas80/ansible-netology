@@ -20,7 +20,7 @@ resource "yandex_compute_instance" "instance-tc-server" {
     memory = 4
   }
   metadata = {
-    docker-container-declaration = file("${path.module}/declaration.yaml")
+    docker-container-declaration = file("${path.module}/declaration-server.yaml")
     user-data                    = file("${path.module}/cloud_config.yaml")
     ssh-keys                     = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
   }

@@ -5,3 +5,4 @@ spec:
       privileged: false
     stdin: false
     tty: false
+  restartPolicy: Always
