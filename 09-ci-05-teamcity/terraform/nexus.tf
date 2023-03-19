@@ -6,7 +6,7 @@ resource "yandex_compute_instance" "instance-nexus" {
 
   boot_disk {
     initialize_params {
-      image_id = var.ubuntu_image_2204
+      image_id = var.centos7_image
       #      size = 30
       type = "network-ssd"
     }
@@ -21,6 +21,6 @@ resource "yandex_compute_instance" "instance-nexus" {
   }
   metadata = {
 #    user-data                    = file("${path.module}/cloud_config.yaml")
-    ssh-keys                     = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+    ssh-keys                     = "centos:${file("~/.ssh/id_rsa.pub")}"
   }
 }

@@ -10,6 +10,10 @@ variable "ubuntu_image_2204" {
   default = "fd8emvfmfoaordspe1jr"
 }
 
+variable "centos7_image" {
+  default = "fd89dg08jjghmn88ut7p"
+}
+
 data "yandex_compute_image" "container-optimized-image" {
   family = "container-optimized-image"
 }
