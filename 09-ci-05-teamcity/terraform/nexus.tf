@@ -1,12 +1,12 @@
-resource "yandex_compute_instance" "instance-tc-agent" {
-  name        = "tc-agent"
+resource "yandex_compute_instance" "instance-nexus" {
+  name        = "nexus"
   zone        = "ru-central1-b"
-  hostname    = "tc-agent"
+  hostname    = "nexus"
   platform_id = "standard-v3"
 
   boot_disk {
     initialize_params {
-      image_id = data.yandex_compute_image.container-optimized-image.id
+      image_id = var.ubuntu_image_2204
       #      size = 30
       type = "network-ssd"
     }
@@ -20,8 +20,7 @@ resource "yandex_compute_instance" "instance-tc-agent" {
     memory = 4
   }
   metadata = {
-    docker-container-declaration = file("${path.module}/declaration-agent.yaml")
-    user-data                    = file("${path.module}/cloud_config.yaml")
+#    user-data                    = file("${path.module}/cloud_config.yaml")
     ssh-keys                     = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
   }
 }
