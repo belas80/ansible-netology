@@ -3,6 +3,9 @@ resource "yandex_compute_instance" "instance-tc-agent" {
   zone        = "ru-central1-b"
   hostname    = "tc-agent"
   platform_id = "standard-v3"
+  scheduling_policy {
+    preemptible = true
+  }
 
   boot_disk {
     initialize_params {
