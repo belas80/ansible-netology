@@ -15,4 +15,5 @@ all:
   vars:
     ansible_connection_type: paramiko
     ansible_user: centos
+    ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 EOF
