@@ -1,0 +1,11 @@
+spec:
+  containers:
+  - env:
+    - name: SERVER_URL
+      value: http://tc-server:8111
+    image: jetbrains/teamcity-agent
+    securityContext:
+      privileged: false
+    stdin: false
+    tty: false
+  restartPolicy: Always
