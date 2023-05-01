@@ -8,6 +8,9 @@ all:
   hosts:
     nexus-01:
       ansible_host: $(terraform output external_ip_nexus | jq -j)
+    tc-agent:
+      ansible_host: $(terraform output external_ip_agent | jq -j)
+      ansible_user: ubuntu
   children:
     nexus:
       hosts:

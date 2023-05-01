@@ -1,0 +1,13 @@
+- name: Gather facts
+  hosts: tc-agent
+  tasks:
+    - name: Retrive Name of Docker Container
+      shell: "docker ps --format '{% raw %}{{ .Names }}{% endraw %}'"
+      register: name_container
+    - name: docker
+      docker_container_info:
+        name: '{{ name_container.stdout }}'
+      register: result
+    - name: print docker info
+      debug:
+        msg: result
