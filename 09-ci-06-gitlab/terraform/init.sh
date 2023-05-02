@@ -21,3 +21,4 @@ sudo usermod -aG docker ubuntu
 
 curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh" | sudo bash
 sudo apt-get install -y gitlab-runner
+sudo usermod -aG docker gitlab-runner
