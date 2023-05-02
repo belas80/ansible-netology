@@ -10,8 +10,8 @@ resource "yandex_compute_instance" "instance-runner" {
   boot_disk {
     initialize_params {
       image_id = var.ubuntu_image_2204
-#      image_id = data.yandex_compute_image.container-optimized-image.id
-      #      size = 30
+      #      image_id = data.yandex_compute_image.container-optimized-image.id
+      size = 30
       type = "network-ssd"
     }
   }
@@ -24,8 +24,9 @@ resource "yandex_compute_instance" "instance-runner" {
     memory = 4
   }
   metadata = {
-#    docker-container-declaration = file("${path.module}/declaration-runner.yaml")
-#    user-data                    = file("${path.module}/cloud_config.yaml")
-    ssh-keys                     = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+    #    docker-container-declaration = file("${path.module}/declaration-runner.yaml")
+    #    user-data                    = file("${path.module}/cloud_config.yaml")
+    user-data = file("${path.module}/init.sh")
+    ssh-keys  = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
   }
 }
