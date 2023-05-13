@@ -1,11 +1,21 @@
 spec:
   containers:
-  - env:
-    - name: SERVER_URL
-      value: http://tc-server:8111
-    image: jetbrains/teamcity-agent
+    image: gitlab/gitlab-runner:alpine
+    name: gitlab-runner
     securityContext:
       privileged: false
     stdin: false
     tty: false
+    volumeMounts:
+      - mountPath: /etc/gitlab-runner
+        name: config-volume
+      - mountPath: /var/run/docker.sock
+        name: docker-sock
   restartPolicy: Always
+  volumes:
+    - name: config-volume
+      hostPath:
+        path: /srv/gitlab-runner/config
+    - name: docker-sock
+      hostPath:
+        path: /var/run/docker.sock
