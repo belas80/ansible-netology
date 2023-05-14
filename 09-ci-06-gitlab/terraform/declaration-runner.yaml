@@ -1,5 +1,8 @@
 spec:
   containers:
+  - env:
+      - name: TZ
+        value: Asia/Yekaterinburg
     image: gitlab/gitlab-runner:alpine
     name: gitlab-runner
     securityContext:
